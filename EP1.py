@@ -90,6 +90,8 @@ def fTroco(troco):
         troco1(valorMax,troco)
 
 def detalhesInternos(cafeSoluvel,copos, agua, adocante, acucar, abacate, morango, leite, laranja, faturamento):
+    """ Esta função exibe os detalhes internos
+    (opção 8 da máquina)"""
     limpaTela()
     print("--> Detalhes internos\n")
     print(f"Café solúvel: {cafeSoluvel}g")
