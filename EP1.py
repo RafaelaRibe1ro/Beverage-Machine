@@ -92,6 +92,7 @@ def fTroco(troco):
 def detalhesInternos(cafeSoluvel,copos, agua, adocante, acucar, abacate, morango, leite, laranja, faturamento):
     """ Esta função exibe os detalhes internos
     (opção 8 da máquina)"""
+    
     limpaTela()
     print("--> Detalhes internos\n")
     print(f"Café solúvel: {cafeSoluvel}g")
@@ -104,6 +105,24 @@ def detalhesInternos(cafeSoluvel,copos, agua, adocante, acucar, abacate, morango
     print(f"Leite: {leite}ml")
     print(f"Laranja: {laranja} unidades")
     print(f"Faturamento: R${faturamento:.2f}\n")
+
+def desejaVer(cafeSoluvel,copos, agua, adocante, acucar, abacate, morango, leite, laranja, faturamento):
+    """ Esta função permite a visualização dos detalhes
+    internos após a compra, caso seja solicitado"""
+
+    ver = input("\nDeseja ver os detalhes internos?: ")
+
+    if ver == "s" or ver == "S":
+        detalhesInternos(cafeSoluvel,copos, agua, adocante, acucar, abacate, morango, leite, laranja, faturamento)
+        print("\n----------------Obrigado, volte sempre!-------------------\n")
+
+    elif ver == "n" or ver == "N":
+        print("\n----------------Obrigado, volte sempre!-------------------\n")
+
+    else:
+        print("\nATENÇÃO!!!")
+        print("Você deve digitar S para sim e N para não")
+        desejaVer(cafeSoluvel,copos, agua, adocante, acucar, abacate, morango, leite, laranja, faturamento)
 
 def novoPedido(cafeSoluvel,copos, agua, adocante, acucar, abacate, morango, leite, laranja, faturamento):
     """ Esta função volta para o menu quando
@@ -129,21 +148,10 @@ def novoPedido(cafeSoluvel,copos, agua, adocante, acucar, abacate, morango, leit
             print(f"Seu troco será de R${troco:.2f}")
             print("\nRetire o seu troco:")
             fTroco(troco)
-            pedidoFinal = input("\nDeseja escolher um novo pedido ou opção? (S/N): ")
-
-            if pedidoFinal == "N" or pedidoFinal == "n":
-                detalhesInternos(cafeSoluvel,copos, agua, adocante, acucar, abacate, morango, leite, laranja, faturamento)
-                print("\n----------------Obrigado, volte sempre!-------------------\n")
-            elif pedidoFinal == "S" or pedidoFinal == "s":
-                limpaTela()
-                menu(cafeSoluvel,copos, agua, adocante, acucar, abacate, morango, leite, laranja, faturamento)
-            else:
-                print("\nATENÇÃO!!!")
-                print("Você deve digitar S para sim e N para não")
-                novoPedido(cafeSoluvel,copos, agua, adocante, acucar, abacate, morango, leite, laranja, faturamento)
+            desejaVer(cafeSoluvel,copos, agua, adocante, acucar, abacate, morango, leite, laranja, faturamento)
 
         elif dinheiro == faturamento:
-            print("\n----------------Obrigado, volte sempre!-------------------\n")
+            desejaVer(cafeSoluvel,copos, agua, adocante, acucar, abacate, morango, leite, laranja, faturamento)
 
         elif dinheiro < faturamento:
             print("O valor inserido não é suficiente para o pagamento, tente novamente")
